@@ -84,9 +84,9 @@ class GuidedBackprop():
 
 
 if __name__ == '__main__':
-    cnn_layer = 2
+    cnn_layer = 24
     filter_pos = 5
-    target_example = 2  # Spider
+    target_example = 1  # Spider
     (original_image, prep_img, target_class, file_name_to_export, pretrained_model) =\
         get_example_params(target_example)
 
@@ -98,6 +98,7 @@ if __name__ == '__main__':
     guided_grads = GBP.generate_gradients(prep_img, target_class, cnn_layer, filter_pos)
     # Save colored gradients
     save_gradient_images(guided_grads, file_name_to_export + '_Guided_BP_color')
+    '''
     # Convert to grayscale
     grayscale_guided_grads = convert_to_grayscale(guided_grads)
     # Save grayscale gradients
@@ -106,4 +107,5 @@ if __name__ == '__main__':
     pos_sal, neg_sal = get_positive_negative_saliency(guided_grads)
     save_gradient_images(pos_sal, file_name_to_export + '_pos_sal')
     save_gradient_images(neg_sal, file_name_to_export + '_neg_sal')
+    '''
     print('Layer Guided backprop completed')
